@@ -24,8 +24,8 @@ credentials:
 jobs:
   - script: >
       pipelineJob('my-flask-app') {
-        triggers {
-          remoteTrigger('${JENKINS_REMOTE_TOKEN}')
+        configure { project ->
+          project / 'authToken'('${JENKINS_REMOTE_TOKEN}')
         }
         definition {
           cpsScm {

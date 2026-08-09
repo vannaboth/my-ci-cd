@@ -30,5 +30,5 @@ variable "public_ip_cidr" {
 
 variable "docker_image" {
   type    = string
-  default = "yourusername/flask-app"
+  default = "vannabothcd/flask-app"
 }

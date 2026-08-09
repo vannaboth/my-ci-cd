@@ -15,10 +15,14 @@
     mode: "0644"
 
 - name: Add Docker repository
-  apt_repository:
-    repo: >-
-      deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.asc]
-      https://download.docker.com/linux/ubuntu noble stable
+  deb822_repository:
+    name: docker
+    types: [deb]
+    uris: https://download.docker.com/linux/ubuntu
+    suites: [noble]
+    components: [stable]
+    architectures: [amd64]
+    signed_by: /usr/share/keyrings/docker-archive-keyring.asc
     state: present
 
 - name: Install Docker Engine and compose plugin

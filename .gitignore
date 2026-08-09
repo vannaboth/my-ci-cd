@@ -15,7 +15,9 @@ env/
 *.tfstate
 *.tfstate.*
 .terraform.lock.hcl
+*.tfvars
 
 .idea/
 .vscode/
 .DS_Store
+

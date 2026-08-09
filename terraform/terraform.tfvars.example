@@ -1,6 +1,7 @@
 aws_region            = "ap-southeast-1"
 project_name          = "flask-app"
-jenkins_instance_type = "t3.micro"
+jenkins_instance_type = "t3.medium"
 app_instance_type     = "t3.micro"
-docker_image          = "vannabothcd/flask-app"
+docker_image          = "yourname/flask-app"
 ssh_key_name          = "my-key"
+

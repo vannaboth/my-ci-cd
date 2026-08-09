@@ -1,7 +1,0 @@
-jenkins_dockerhub_username: your-dockerhub-username
-jenkins_dockerhub_password: your-dockerhub-password
-jenkins_remote_token: your-jenkins-remote-token
-app_deploy_private_key: |
-  -----BEGIN OPENSSH PRIVATE KEY-----
-  REPLACE_WITH_JENKINS_DEPLOY_PRIVATE_KEY
-  -----END OPENSSH PRIVATE KEY-----

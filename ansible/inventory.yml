@@ -1,15 +1,15 @@
 jenkins:
   hosts:
-    jenkins:
-      ansible_host: "JENKINS_EC2_PUBLIC_IP"
+    jenkins-master:
+      ansible_host: "47.129.233.32"
       ansible_user: ubuntu
       ansible_ssh_private_key_file: "~/.ssh/my-key.pem"
       ansible_python_interpreter: /usr/bin/python3
 
 app:
   hosts:
-    app:
-      ansible_host: "APP_EC2_PUBLIC_IP"
+    app-server:
+      ansible_host: "18.136.206.66"
       ansible_user: ubuntu
       ansible_ssh_private_key_file: "~/.ssh/my-key.pem"
       ansible_python_interpreter: /usr/bin/python3

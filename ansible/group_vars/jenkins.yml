@@ -1,4 +1,0 @@
-jenkins_src_dir: ../jenkins
-
-jenkins_repo_url: https://github.com/yourusername/my-ci-cd.git
-jenkins_url: http://localhost:8080

@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'yourusername/flask-app'
+        DOCKER_IMAGE = 'vannabothcd/flask-app'
 
         APP_HOST = 'APP_PUBLIC_IP'
         APP_USER = 'ubuntu'
@@ -14,13 +14,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
+                sh 'git config --global user.name "vannaboth" && git config --global user.email "vannaboth100@gmail.com"'
             }
         }
 
         stage('Test') {
             steps {
                 sh '''
-                    python3 -m pip install -r requirements.txt
                     python3 -m pytest
                 '''
             }

@@ -29,13 +29,34 @@
 
 - name: Copy Jenkins Dockerfile
   copy:
-    src: "{{ jenkins_src_dir }}/Dockerfile"
+    src: Dockerfile
     dest: /opt/jenkins/Dockerfile
 
 - name: Copy Jenkins JCasC config
   copy:
-    src: "{{ jenkins_src_dir }}/jenkins.yaml"
+    src: jenkins.yaml
     dest: /opt/jenkins/jenkins.yaml
+
+- name: Copy Jenkins plugins list
+  copy:
+    src: plugins.txt
+    dest: /opt/jenkins/plugins.txt
+
+- name: Copy Jenkins git identity init script
+  copy:
+    src: set-git-identity.groovy
+    dest: /opt/jenkins/set-git-identity.groovy
+
+- name: Copy app requirements.txt
+  copy:
+    src: "{{ playbook_dir }}/../requirements.txt"
+    dest: /opt/jenkins/requirements.txt
+
+- name: Stop Jenkins container before rebuild
+  command: docker compose down
+  args:
+    chdir: /opt/jenkins
+  ignore_errors: true
 
 - name: Build and start Jenkins container
   command: docker compose up -d --build

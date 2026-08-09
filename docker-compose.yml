@@ -1,7 +1,7 @@
 ---
 services:
   flask-app:
-    image: ${DOCKER_IMAGE:-yourusername/flask-app:latest}
+    image: ${DOCKER_IMAGE:-vannabothcd/flask-app:latest}
     container_name: flask-app
     ports:
       - "3000:3000"
