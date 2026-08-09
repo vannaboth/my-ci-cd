@@ -1,0 +1,45 @@
+- name: Install Docker prerequisites
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+    update_cache: true
+
+- name: Add Docker GPG key
+  get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /usr/share/keyrings/docker-archive-keyring.asc
+    mode: "0644"
+
+- name: Add Docker repository
+  apt_repository:
+    repo: >-
+      deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.asc]
+      https://download.docker.com/linux/ubuntu noble stable
+    state: present
+
+- name: Install Docker Engine and compose plugin
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+    update_cache: true
+
+- name: Ensure ubuntu user can use Docker
+  user:
+    name: ubuntu
+    groups: docker
+    append: true
+
+- name: Ensure Docker service started
+  systemd:
+    name: docker
+    enabled: true
+    state: started

@@ -1,0 +1,7 @@
+aws_region            = "ap-southeast-1"
+project_name          = "flask-app"
+jenkins_instance_type = "t3.medium"
+app_instance_type     = "t3.micro"
+public_ip_cidr        = "YOUR_PUBLIC_IP/32"
+docker_image          = "vannaboth/flask-app"
+ssh_key_name          = "my-key"

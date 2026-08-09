@@ -1,0 +1,15 @@
+- include_role:
+    name: docker
+
+- name: Create app directory
+  file:
+    path: /home/ubuntu/flask-app
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: Add Jenkins deploy public key
+  ansible.posix.authorized_key:
+    user: ubuntu
+    key: "{{ app_deploy_public_key }}"
+    state: present

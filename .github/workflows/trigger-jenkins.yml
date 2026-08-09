@@ -1,0 +1,17 @@
+name: Trigger Jenkins
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  trigger-jenkins:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Jenkins
+        run: |
+          curl -X POST \
+            "${{ secrets.JENKINS_URL }}/job/my-flask-app/build?token=${{ secrets.JENKINS_TOKEN }}"

@@ -1,0 +1,43 @@
+- include_role:
+    name: docker
+
+- name: Create Jenkins directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - /opt/jenkins
+    - /etc/jenkins/ssh
+
+- name: Place Jenkins deploy private key
+  copy:
+    content: "{{ app_deploy_private_key }}"
+    dest: /etc/jenkins/ssh/app-key.pem
+    mode: "0600"
+
+- name: Template Jenkins .env
+  template:
+    src: .env.j2
+    dest: /opt/jenkins/.env
+    mode: "0600"
+
+- name: Template Jenkins compose file
+  template:
+    src: docker-compose.yml.j2
+    dest: /opt/jenkins/docker-compose.yml
+
+- name: Copy Jenkins Dockerfile
+  copy:
+    src: "{{ jenkins_src_dir }}/Dockerfile"
+    dest: /opt/jenkins/Dockerfile
+
+- name: Copy Jenkins JCasC config
+  copy:
+    src: "{{ jenkins_src_dir }}/jenkins.yaml"
+    dest: /opt/jenkins/jenkins.yaml
+
+- name: Build and start Jenkins container
+  command: docker compose up -d --build
+  args:
+    chdir: /opt/jenkins

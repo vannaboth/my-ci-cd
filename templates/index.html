@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Test App</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <main class="container">
+        <div class="card">
+            <h1>Flask Test App</h1>
+
+            <p>
+                This is a simple HTML, CSS and JavaScript page
+                running with Flask.
+            </p>
+
+            <button id="helloButton">
+                Call Flask API
+            </button>
+
+            <div id="result" class="result">
+                Click the button to test the Flask backend.
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

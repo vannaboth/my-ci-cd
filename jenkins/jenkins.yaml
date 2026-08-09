@@ -1,0 +1,42 @@
+jenkins:
+  systemMessage: "Configured by JCasC"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+  numExecutors: 2
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              scope: GLOBAL
+              id: dockerhub
+              username: ${DOCKER_USERNAME}
+              password: ${DOCKER_PASSWORD}
+
+jobs:
+  - script: >
+      pipelineJob('my-flask-app') {
+        triggers {
+          remoteTrigger('${JENKINS_REMOTE_TOKEN}')
+        }
+        definition {
+          cpsScm {
+            scm {
+              git('${REPO_URL}', 'main')
+            }
+            scriptPath('Jenkinsfile')
+          }
+        }
+      }
+
+unclassified:
+  location:
+    url: ${JENKINS_URL}

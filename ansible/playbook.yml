@@ -1,0 +1,13 @@
+- name: Configure Jenkins
+  hosts: jenkins
+  become: true
+
+  roles:
+    - jenkins
+
+- name: Configure app host
+  hosts: app
+  become: true
+
+  roles:
+    - app
